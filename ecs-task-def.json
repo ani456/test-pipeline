@@ -1,90 +1,35 @@
 {
-    "compatibilities": [
-        "EC2",
-        "FARGATE",
-        "MANAGED_INSTANCES"
-    ],
-    "containerDefinitions": [
+  "family": "onlinebookstore-task",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "1024",
+  "memory": "3072",
+  "executionRoleArn": "arn:aws:iam::898080060227:role/ecsTaskExecutionRole",
+  "runtimePlatform": {
+    "cpuArchitecture": "X86_64",
+    "operatingSystemFamily": "LINUX"
+  },
+  "containerDefinitions": [
+    {
+      "name": "onlinebookstore-container",
+      "image": "IMAGE_URI",
+      "essential": true,
+      "cpu": 0,
+      "portMappings": [
         {
-            "cpu": 0,
-            "environment": [],
-            "environmentFiles": [],
-            "essential": true,
-            "image": "898080060227.dkr.ecr.us-east-1.amazonaws.com/documents/bookstoreonline@sha256:74c4894d3887cac82d4dfd5d2630bef832f2f07d8ea643b8ea3fa022e1dc150c",
-            "logConfiguration": {
-                "logDriver": "awslogs",
-                "options": {
-                    "awslogs-group": "/ecs/onlinebookstore-task",
-                    "awslogs-create-group": "true",
-                    "awslogs-region": "us-east-1",
-                    "awslogs-stream-prefix": "ecs"
-                },
-                "secretOptions": []
-            },
-            "mountPoints": [],
-            "name": "onlinebookstore-container",
-            "portMappings": [
-                {
-                    "appProtocol": "http",
-                    "containerPort": 8080,
-                    "hostPort": 8080,
-                    "name": "onlinebookstore-container-8080-tcp",
-                    "protocol": "tcp"
-                }
-            ],
-            "systemControls": [],
-            "ulimits": [],
-            "volumesFrom": []
+          "containerPort": 8080,
+          "protocol": "tcp"
         }
-    ],
-    "cpu": "1024",
-    "enableFaultInjection": false,
-    "executionRoleArn": "arn:aws:iam::898080060227:role/ecsTaskExecutionRole",
-    "family": "onlinebookstore-task",
-    "memory": "3072",
-    "networkMode": "awsvpc",
-    "placementConstraints": [],
-    "registeredAt": "2025-11-14T07:54:21.698Z",
-    "registeredBy": "arn:aws:iam::898080060227:root",
-    "requiresAttributes": [
-        {
-            "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
-        },
-        {
-            "name": "ecs.capability.execution-role-awslogs"
-        },
-        {
-            "name": "com.amazonaws.ecs.capability.ecr-auth"
-        },
-        {
-            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
-        },
-        {
-            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.21"
-        },
-        {
-            "name": "ecs.capability.execution-role-ecr-pull"
-        },
-        {
-            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
-        },
-        {
-            "name": "ecs.capability.task-eni"
-        },
-        {
-            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/onlinebookstore-task",
+          "awslogs-create-group": "true",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "ecs"
         }
-    ],
-    "requiresCompatibilities": [
-        "FARGATE"
-    ],
-    "revision": 1,
-    "runtimePlatform": {
-        "cpuArchitecture": "X86_64",
-        "operatingSystemFamily": "LINUX"
-    },
-    "status": "ACTIVE",
-    "taskDefinitionArn": "arn:aws:ecs:us-east-1:898080060227:task-definition/onlinebookstore-task:1",
-    "volumes": [],
-    "tags": []
+      }
+    }
+  ]
 }
